@@ -15,10 +15,27 @@ public class Explosion : MonoBehaviour
     public static bool collision; // active explosion
     public static bool active; //active function
     // Use this for initialization
+
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
+
+
     void Start()
     {
 		
         active = true;
+
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
     }
 
     // Update is called once per frame

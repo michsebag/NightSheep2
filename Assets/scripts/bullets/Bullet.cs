@@ -9,13 +9,27 @@ public class Bullet : MonoBehaviour
     private Vector2 target; //target to move to
     private Vector2 vectorDirecton;
     // Use this for initialization
+
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
+
     void Start()
     {
         target = GameManager.targetFire;
         
 		Vector2 heading = target - new Vector2(-31.5f,-7f);
 
-
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
 		GetComponent<Rigidbody2D> ().AddForce (heading.normalized * speed, ForceMode2D.Impulse);
 
 
@@ -26,7 +40,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+		
         
         if ((transform.position.x > 37) || (transform.position.y < -9))
         {

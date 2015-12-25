@@ -44,11 +44,24 @@ public class GameManager : MonoBehaviour {
 	public static int wolfcounter = 0 ; // counter for the wolf amount on the screen
    
 	public static int countAmmo;
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+
+
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
 
     // Use this for initialization
     void Start () {
 
 		ammoCountText.text = "Ammo : " + countAmmo;
+
+
+		source.PlayOneShot(shootSound,1f);
 
     }
    

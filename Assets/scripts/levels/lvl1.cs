@@ -11,7 +11,17 @@ public class lvl1 : MonoBehaviour {
 	public GameObject monster_2; // Split fish
 
 
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
 
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
 
 
 	void Start () {
@@ -50,6 +60,8 @@ public class lvl1 : MonoBehaviour {
 	void Update () {
 		
 		if (GameManager.wolfcounter == 20) {
+			float vol = Random.Range (volLowRange, volHighRange);
+			source.PlayOneShot(shootSound,vol);
 			Application.LoadLevel ("level 2");
 		}
 	}

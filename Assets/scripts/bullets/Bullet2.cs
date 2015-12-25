@@ -9,7 +9,18 @@ public class Bullet2 : MonoBehaviour {
     private Vector2 target;
     private Vector2 vectorDirecton;
 
-   
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
+
     // Use this for initialization
     void Start () {
         target = GameManager.targetFire;
@@ -17,6 +28,13 @@ public class Bullet2 : MonoBehaviour {
 		Vector2 heading = target - new Vector2(-31.5f,-7f);
 
 		GetComponent<Rigidbody2D>().AddForce(heading.normalized * speed,ForceMode2D.Impulse);
+
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
+
+
+		GetComponent<Rigidbody2D> ().AddForce (heading.normalized * speed, ForceMode2D.Impulse);
+
      
         
     }

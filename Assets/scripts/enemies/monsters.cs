@@ -9,10 +9,21 @@ public class monsters : MonoBehaviour {
 	public GameObject monster_7_child;
 
 	public  bool active = false; // keep moving
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
 
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
 	// Use this for initialization
 	void Start () {
-		
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
 	}
 	
 	// Update is called once per frame

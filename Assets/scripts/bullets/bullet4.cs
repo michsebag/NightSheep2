@@ -9,15 +9,27 @@ public class bullet4 : MonoBehaviour {
 	private Vector2 target; //target to move to
 	private Vector2 vectorDirecton;
 	// Use this for initialization
+
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
+
 	void Awake () {
 		target = GameManager.targetFire;
-
+		source = GetComponent<AudioSource>();
 		Vector2 heading = target - new Vector2(-31.5f,-7f);
 		GetComponent<Rigidbody2D> ().AddForce (heading.normalized * speed, ForceMode2D.Impulse);
 		StartCoroutine (slowMotion ());
 
 	}
-	
+	void Start () {
+
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
+	}
 	// Update is called once per frame
 	void Update () {
 		if ((transform.position.x > 37) || (transform.position.y < -9))

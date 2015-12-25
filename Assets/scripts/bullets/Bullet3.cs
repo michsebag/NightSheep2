@@ -12,9 +12,26 @@ public class Bullet3 : MonoBehaviour {
 	private Vector2 target;//target to move to
     private Vector2 vectorDirecton;
 
+
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+
+	}
+
     // Use this for initialization
     void Start () {
-        target = GameManager.targetFire;
+
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
+
+		target = GameManager.targetFire;
 
 		Vector2 heading = target - new Vector2(-31.5f,-7f);
 

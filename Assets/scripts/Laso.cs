@@ -9,10 +9,30 @@ public class Laso : MonoBehaviour
     private bool goForword;
 	// Bollean if laso already collected a sheep
 	public static bool collected = false;
+	//Sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+	//Sound
+	/*public AudioClip grabSound;
+	private AudioSource sourceG;*/
+
+
+	void Awake () {
+
+		source = GetComponent<AudioSource>();
+		//sourceG = GetComponent<AudioSource>();
+
+	}
    
     // Use this for initialization
     void Start()
     {
+
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(shootSound,vol);
+
         target = GameManager.targetLaso;
         goForword = true;
 		collected = false;
@@ -24,6 +44,8 @@ public class Laso : MonoBehaviour
 
         if (goForword == true  && !collected)
         {
+			/*float vol = Random.Range (volLowRange, volHighRange);
+			sourceG.PlayOneShot(grabSound,vol);*/
             
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
             Vector3 moveDirection = transform.position - new Vector3(-34.5f, -5f,0);
