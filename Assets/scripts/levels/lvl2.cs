@@ -57,7 +57,7 @@ public class lvl2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameManager.wolfcounter == 14) {
+		if (GameManager.wolfcounter == 22) {
 			Application.LoadLevel ("level 3");
 		}
 

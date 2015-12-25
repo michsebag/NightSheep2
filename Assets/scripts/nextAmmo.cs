@@ -18,10 +18,19 @@ public class nextAmmo : MonoBehaviour {
     public static GameObject[] ammo = new GameObject[4]; // array of "spirit" objects that player will see
 	void Start () {
         //load ammo
-        for (int i = 0; i < 5; i++)
+        for (int i = 1; i < 21; i++)
         {
-		cartrodge.Enqueue(bullet);
+			if (i % 3 != 0) {
+				cartrodge.Enqueue (bullet);
+			} else {
+				if (i % 2 == 0) {
+					cartrodge.Enqueue (bullet2);
+				} else {
+					cartrodge.Enqueue (bullet3);
+				}
+			}
        }
+		cartrodge.Enqueue (bullet4);
         
        
     }

@@ -26,6 +26,7 @@ public class lvl1 : MonoBehaviour {
 		yield return new WaitForSeconds (3f);
 		for( int i = 0 ; i < 10 ; i ++){
 			Instantiate (sheep, new Vector2 (33,9),  Quaternion.Euler(0,180,0));
+			yield return new WaitForSeconds (3f);
 			if(i % 2 == 0 ){
 				Instantiate (sheep_2, new Vector2 (30,9),  Quaternion.Euler(0,180,0));
 				yield return new WaitForSeconds (3f);
@@ -48,7 +49,7 @@ public class lvl1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (GameManager.wolfcounter > 5) {
+		if (GameManager.wolfcounter == 20) {
 			Application.LoadLevel ("level 2");
 		}
 	}
